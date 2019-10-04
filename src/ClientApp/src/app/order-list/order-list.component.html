@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <li class="list-group-item list-group-item-action" *ngFor="let order of orders" [ngClass]="{'active': order.id == selectedId}" (click)="onSelect(order.id)">
+    Order #{{order.id}}
+  </li>
+</ul>

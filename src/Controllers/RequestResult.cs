@@ -13,11 +13,4 @@
 
 		public object Message { get; set; }
 	}
-
-	public class AccountTransferResult
-	{
-		public decimal Source_Balance { get; set; }
-
-		public decimal Destination_Balance { get; set; }
-	}
 }
