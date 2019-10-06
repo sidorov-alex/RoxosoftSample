@@ -36,16 +36,18 @@ namespace RoxosoftSample.Controllers
 				return BadRequest(new ErrorRequestResult() { Message = "Идентификатор заказа указан неверно." });
 			}
 
-			Order order = await dbContext.Orders.Include(x => x.Entries).FirstOrDefaultAsync(x => x.Id == orderId);
+			Order order = await dbContext.Orders.FirstOrDefaultAsync(x => x.Id == orderId);
 
 			if (order == null)
 			{
 				return NotFound(new ErrorRequestResult() { Message = "Заказ не найден." });
 			}
 
+			var entries = await dbContext.OrderEntries.Where(x => x.Order == order).ToListAsync();
+
 			return new ObjectResult(new SuccessRequestResult()
 			{
-				Result = order.Entries
+				Result = entries
 			});
 		}
 	}

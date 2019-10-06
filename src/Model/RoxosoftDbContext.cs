@@ -19,9 +19,9 @@ namespace RoxosoftSample.Model
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Order>()
-				.HasMany(x => x.Entries)
-				.WithOne()
+			modelBuilder.Entity<OrderEntry>()
+				.HasOne(x => x.Order)
+				.WithMany()
 				.IsRequired();
 		}
 	}

@@ -15,7 +15,5 @@ namespace RoxosoftSample.Model
 
 		[Required]
 		public OrderStatus Status { get; set; }
-		
-		public ICollection<OrderEntry> Entries { get; set; }
 	}
 }

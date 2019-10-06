@@ -21,5 +21,7 @@ namespace RoxosoftSample.Model
 
 		[Required]
 		public float Price { get; set; }
+
+		public Order Order { get; set; }
 	}
 }
