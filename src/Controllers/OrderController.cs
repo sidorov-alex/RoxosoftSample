@@ -28,8 +28,8 @@ namespace RoxosoftSample.Controllers
 			});
 		}
 
-		[HttpGet("{orderId:int}")]
-		public async Task<IActionResult> GetOrderDetails(int orderId)
+		[HttpGet("{orderId:int}/entries")]
+		public async Task<IActionResult> GetOrderEntries(int orderId)
 		{
 			if (orderId <= 0)
 			{
@@ -45,7 +45,7 @@ namespace RoxosoftSample.Controllers
 
 			return new ObjectResult(new SuccessRequestResult()
 			{
-				Result = order
+				Result = order.Entries
 			});
 		}
 	}
