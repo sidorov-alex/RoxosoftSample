@@ -26,12 +26,12 @@ export class OrdersService {
       }));
   }
 
-  getOrderDetails(id: number): Observable<OrderDetails> {
-    return this.http.get<RequestResult>('api/order/' + id)
+  getOrderEntries(id: number): Observable<OrderEntry[]> {
+    return this.http.get<RequestResult>('api/order/' + id + '/entries')
       .pipe(map(data => {
 
         if (data.status == 'ok')
-          return data.result as OrderDetails;
+          return data.result as OrderEntry[];
         else
           throwError(data.message);
 

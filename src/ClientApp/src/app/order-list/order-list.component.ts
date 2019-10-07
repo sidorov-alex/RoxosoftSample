@@ -1,30 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { OrdersService, Order } from '../orders.service';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Order } from '../orders.service';
 
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css']
 })
-export class OrderListComponent implements OnInit {
+export class OrderListComponent {
 
-  orders: Order[] = [];
+  orders: Order[];
+  selected: Order;
 
-  selectedId: number;
+  @Output() selectedChanged = new EventEmitter();
 
-  constructor(
-    private ordersService: OrdersService) { }
+  constructor() { }
+  
+  selectOrder(order: Order) {
+    this.selected = order;
 
-  ngOnInit() {
-    this.getOrders();
-  }
-
-  getOrders() {
-    this.ordersService.getList()
-      .subscribe(orders => this.orders = orders);
-  }
-
-  onSelect(id: number) {
-    this.selectedId = id;
+    this.selectedChanged.emit();
   }
 }

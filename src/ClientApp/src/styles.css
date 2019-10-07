@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.orderStatusBox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}

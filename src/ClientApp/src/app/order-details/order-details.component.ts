@@ -1,29 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { OrdersService, OrderDetails } from '../orders.service';
+import { Component } from '@angular/core';
+import { Order, OrderEntry } from '../orders.service';
 
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.css']
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent {
 
-  order: OrderDetails;
+  private order: Order;
+  private orderEntries: OrderEntry[];
 
-  constructor(
-    private route: ActivatedRoute,
-    private ordersService: OrdersService) { }
+  private orderTotalQuantity: number;
+  private orderTotalCost: number;
 
-  ngOnInit() {
+  constructor() { }
 
-    const orderId = +this.route.snapshot.paramMap.get('id');
+  public setDetails(order: Order, entries: OrderEntry[]) {
+    this.order = order;
+    this.orderEntries = entries;
 
-    this.getData(orderId);
+    this.calcTotals();
   }
 
-  getData(orderId: number) {
-    this.ordersService.getOrderDetails(orderId)
-      .subscribe(order => this.order = order);
+  private calcTotals() {
+    this.orderTotalQuantity = this.orderEntries.reduce((t, e) => t + e.quantity, 0);
+    this.orderTotalCost = this.orderEntries.reduce((t, e) => t + e.quantity * e.price, 0);
   }
+  
 }

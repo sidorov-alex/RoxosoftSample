@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { OrderStatusTextPipe } from './order-status-text.pipe';
+import { OrderStatusStylePipe } from './order-status-style.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { OrderListComponent } from './order-list/order-list.component';
     HomeComponent,
     OrderDetailsComponent,
     OrderListComponent,
+    OrderStatusTextPipe,
+    OrderStatusStylePipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
