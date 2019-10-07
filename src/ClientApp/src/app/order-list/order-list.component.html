@@ -1,5 +1,7 @@
 <ul class="list-group">
-  <li class="list-group-item list-group-item-action" *ngFor="let order of orders" [ngClass]="{'active': order == selected}" (click)="selectOrder(order)">
-    Order #{{order.id + '     ' + (order.dateTime | date:'dd.MM.yyyy HH:mm')}}
+  <li class="list-group-item list-group-item-action row" *ngFor="let order of orders" [ngClass]="{'active': order == selected}" (click)="selectOrder(order)">
+    <div class="orderStatusBox col-sm-2" [ngClass]="order.status | orderStatusStyle"></div>
+    <span class="col-sm-6">Order #{{order.id}}</span>
+    <span class="col-sm-6">{{(order.dateTime | date:'dd.MM.yyyy HH:mm')}}</span>
   </li>
 </ul>
