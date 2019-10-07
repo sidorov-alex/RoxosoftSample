@@ -57,10 +57,3 @@ export class OrderEntry {
   quantity: number;
   price: number;
 }
-
-export class OrderDetails {
-  id: number;
-  dateTime: Date;
-  status: number;
-  entries: OrderEntry[];
-}
