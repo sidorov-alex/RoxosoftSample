@@ -1,47 +1,52 @@
-<div class="card">
-  <div class="card-body">
-    <div class="row card-text">
-      <label class="col-sm-4 font-weight-bold">Number:</label>
-      <label class="col-sm-8">Order #{{order.id}}</label>
-    </div>
-    <div class="row card-text">
-      <label class="col-sm-4 font-weight-bold">Date:</label>
-      <label class=" col-sm-8">{{order.dateTime | date:'dd.MM.yyyy HH:mm'}}</label>
-    </div>
-    <div class="row card-text">
-      <label class="col-sm-4 font-weight-bold">Status:</label>
-      <div class="col-sm-8">
-        <div class="orderStatusBox" [ngClass]="order.status | orderStatusStyle"></div>
-        <label>{{order.status | orderStatusText}}</label>
+<div *ngIf="order">
+  <div class="card">
+    <div class="card-body">
+      <div class="row card-text">
+        <label class="col-sm-4 font-weight-bold">Number:</label>
+        <label class="col-sm-8">Order #{{order.id}}</label>
+      </div>
+      <div class="row card-text">
+        <label class="col-sm-4 font-weight-bold">Date:</label>
+        <label class=" col-sm-8">{{order.dateTime | date:'dd.MM.yyyy HH:mm'}}</label>
+      </div>
+      <div class="row card-text">
+        <label class="col-sm-4 font-weight-bold">Status:</label>
+        <div class="col-sm-8">
+          <div class="orderStatusBox" [ngClass]="order.status | orderStatusStyle"></div>
+          <label>{{order.status | orderStatusText}}</label>
+        </div>
+      </div>
+      <div class="row card-text">
+        <label class="col-sm-4 font-weight-bold">Total:</label>
+        <label class="col-sm-8">{{orderTotalCost}}</label>
       </div>
     </div>
-    <div class="row card-text">
-      <label class="col-sm-4 font-weight-bold">Total:</label>
-      <label class="col-sm-8">{{orderTotalCost}}</label>
-    </div>
   </div>
+  <table class="table table-bordered table-striped mt-3 mb-0">
+    <thead>
+      <tr>
+        <th class="text-center">Product name</th>
+        <th class="text-center">Qty</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of orderEntries">
+        <th>{{entry.productName}}</th>
+        <td>{{entry.quantity}}</td>
+        <td>{{entry.price}}</td>
+        <td>{{entry.quantity * entry.price}}</td>
+      </tr>
+      <tr>
+        <th>Total:</th>
+        <th>{{orderTotalQuantity}}</th>
+        <th></th>
+        <th>{{orderTotalCost}}</th>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<table class="table table-bordered table-striped mt-3 mb-0">
-  <thead>
-    <tr>
-      <th class="text-center">Product name</th>
-      <th class="text-center">Qty</th>
-      <th class="text-center">Price</th>
-      <th class="text-center">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let entry of orderEntries">
-      <th>{{entry.productName}}</th>
-      <td>{{entry.quantity}}</td>
-      <td>{{entry.price}}</td>
-      <td>{{entry.quantity * entry.price}}</td>
-    </tr>
-    <tr>
-      <th>Total:</th>
-      <th>{{orderTotalQuantity}}</th>
-      <th></th>
-      <th>{{orderTotalCost}}</th>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="!order" class="border rounded h-100 w-100 d-flex p-2 justify-content-center align-items-center">
+  <h5>Please select an order to view details</h5>
+</div>
