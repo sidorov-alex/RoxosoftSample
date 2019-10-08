@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderStatusTextPipe } from './order-status-text.pipe';
-import { OrderStatusStylePipe } from './order-status-style.pipe';
+import { OrderStatusComponent } from './controls/order-status.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { OrderStatusStylePipe } from './order-status-style.pipe';
     OrderDetailsComponent,
     OrderListComponent,
     OrderStatusTextPipe,
-    OrderStatusStylePipe,
+    OrderStatusComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,7 +26,6 @@ import { OrderStatusStylePipe } from './order-status-style.pipe';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'order/:id', component: OrderDetailsComponent },
     ])
   ],
   providers: [],
